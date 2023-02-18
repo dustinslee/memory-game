@@ -1,3 +1,8 @@
+body {
+  background-color: #282c34;
+  color: white;
+}
+
 .App {
   text-align: center;
 }
@@ -30,7 +35,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 30vh;
   width: 100%;
   display: flex;
@@ -39,6 +43,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  border-bottom: 1px solid white;
 }
 
 .App-link {
@@ -52,4 +57,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#game-reset {
+  font-weight: bold;
 }

@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import Prompt from './Prompt';
 
-// const items = [];
-// for(let i=65; i<75; i++) {
-//   items.push({
-//     id: i,
-//     content: String.fromCharCode(i),
-//     displayed: false,
-//   });
-// }
-
 export default class Game extends Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   items,
-    // };
 
     this.handleAnswer = this.handleAnswer.bind(this);
   }
@@ -24,14 +11,14 @@ export default class Game extends Component {
   handleAnswer(event, item, index, answer) {
     this.props.handleScore(item.displayed === answer);
 
+    // Logic for handling answer
     if(!item.displayed) {
-      const items = this.props.items.map(i => {
+      this.props.items.map(i => {
         if(i === item) {
           i.displayed = true;
           return i;
         } else return i;
       }); 
-      // this.setState({ items });
     }
   }
 
@@ -41,14 +28,17 @@ export default class Game extends Component {
   }
 
   render() {
-    const { items } = this.props;
+    const { items, reset } = this.props;
     const index = this.randomItemIndex();
     const item = items[index];
 
     return ( 
-      <main className='d-flex justify-content-around align-items-center'>
-        <p id={index}>{item.content}</p>
-        <Prompt item={item} index={index} handleAnswer={this.handleAnswer} />
+      <main >
+        <div className='d-flex justify-content-around align-items-center'>
+          <p id={index}>{item.content}</p>
+          <Prompt item={item} index={index} handleAnswer={this.handleAnswer} />
+        </div>
+        {reset && <div id='game-reset'>Game has reset. Please try again</div>}
       </main>
     )
   }
